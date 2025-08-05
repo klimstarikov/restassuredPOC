@@ -1,7 +1,7 @@
-package tests;
+package tests.Positive;
 
-import api.UserApi;
-import model.PostVO;
+import api.PostsAPIImpl;
+import model.Post.PostVO;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -12,7 +12,7 @@ public class GetAllTest {
     @Test(description = "Get all posts")
     @Parameters ({"userId", "numberOfPosts"})
     public void getAllPosts(int userId, int numberOfPosts) {
-        List<PostVO> postVOS = new UserApi().getAllPosts()
+        List<PostVO> postVOS = new PostsAPIImpl().getAllPosts()
                 .then()
                 .statusCode(200)
                 .extract()

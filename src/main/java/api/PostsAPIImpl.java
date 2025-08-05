@@ -1,11 +1,13 @@
 package api;
 
 import io.restassured.response.Response;
+import model.Post.PostVO;
+import model.Post.PostVORequest;
 
 import static io.restassured.RestAssured.given;
 import static utils.SpecFactory.*;
 
-public class UserApi {
+public class PostsAPIImpl {
     public Response getUserById(int id) {
         return given()
                 .spec(requestSpec())
@@ -27,6 +29,14 @@ public class UserApi {
                 .pathParam("postId", postId)
                 .when()
                 .get("comments?postId={postId}");
+    }
+
+    public Response postNewPost(PostVORequest body) {
+        return given()
+                .spec(requestSpec())
+                .body(body)
+                .when()
+                .post("/posts");
     }
 
 }

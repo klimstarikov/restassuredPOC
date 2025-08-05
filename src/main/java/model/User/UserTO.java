@@ -1,4 +1,7 @@
-package model;
+package model.User;
+
+import model.AdressTO;
+import model.CompanyTO;
 
 import java.util.Objects;
 

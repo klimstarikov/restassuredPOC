@@ -1,5 +1,8 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class CommentVO {
     private final int postId;
     private final int id;
@@ -7,7 +10,15 @@ public class CommentVO {
     private final String email;
     private final String body;
 
-    public CommentVO(int postId, int id, String name, String email, String body) {
+    @JsonCreator
+    public CommentVO(
+            @JsonProperty("postId") int postId,
+            @JsonProperty("id") int id,
+            @JsonProperty("name") String name,
+            @JsonProperty("email") String email,
+            @JsonProperty("body") String body) {
+
+
         this.postId = postId;
         this.id = id;
         this.name = name;

@@ -1,10 +1,10 @@
-package tests;
+package tests.Positive;
 
 import facade.UserFacade;
-import model.*;
+import model.User.UserTO;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import testdata.UserFactory;
+import model.User.UserFactory;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 

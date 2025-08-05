@@ -1,4 +1,4 @@
-package model;
+package model.Post;
 
 public class PostBuilder {
 

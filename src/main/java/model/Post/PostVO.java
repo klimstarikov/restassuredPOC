@@ -1,4 +1,7 @@
-package model;
+package model.Post;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
@@ -12,15 +15,15 @@ public class PostVO {
         return userId;
     }
 
-    public PostVO(int userId, int id, String title, String body) {
+    @JsonCreator
+    public PostVO(@JsonProperty("userId") int userId,
+                  @JsonProperty("id") int id,
+                  @JsonProperty("title") String title,
+                  @JsonProperty("body") String body) {
         this.userId = userId;
         this.id = id;
         this.title = title;
         this.body = body;
-    }
-
-    public PostVO() {
-        // Default constructor for deserialization
     }
 
     public void setUserId(int userId) {

@@ -1,23 +1,28 @@
 package facade;
 
-import api.UserApi;
+import api.CommentsAPIImpl;
+import api.PostsAPIImpl;
+import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import model.CommentVO;
-import model.PostVO;
-import model.UserTO;
+import model.Post.PostVO;
+import model.Post.PostVORequest;
+import model.User.UserTO;
 import org.apache.http.HttpStatus;
 
 import java.util.List;
 
 public class UserFacade {
-    private final UserApi userApi;
+    private final PostsAPIImpl postsAPIImpl;
+    private final CommentsAPIImpl commentsAPIImpl;
 
     public UserFacade() {
-        this.userApi = new UserApi();
+        this.postsAPIImpl = new PostsAPIImpl();
+        this.commentsAPIImpl = new CommentsAPIImpl();
     }
 
     public UserTO getUserById(int id) {
-        return userApi.getUserById(id)
+        return postsAPIImpl.getUserById(id)
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
@@ -25,18 +30,35 @@ public class UserFacade {
     }
 
     public ValidatableResponse getUserByIdDefault(int id) {
-        return userApi.getUserById(id)
+        return postsAPIImpl.getUserById(id)
                 .then()
                 .statusCode(HttpStatus.SC_OK);
     }
 
     public List<CommentVO> getCommentsByPostId(int postId) {
-        return userApi.getCommentsByPostId(postId)
+        return postsAPIImpl.getCommentsByPostId(postId)
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
                 .jsonPath()
                 .getList("", CommentVO.class);
+    }
+
+    public List<CommentVO> getCommentsToPostByPath(int postId) {
+        return commentsAPIImpl.getCommentsToPostByPath(postId)
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .extract()
+                .jsonPath()
+                .getList("", CommentVO.class);
+    }
+
+    public Response postNewPost(PostVORequest body) {
+        return postsAPIImpl.postNewPost(body)
+                .then()
+                .statusCode(HttpStatus.SC_CREATED)
+                .extract()
+                .response();
     }
 
 
