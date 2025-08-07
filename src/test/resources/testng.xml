@@ -24,4 +24,10 @@
             <class name="tests.Positive.PostPostTest"/>
         </classes>
     </test>
+    <test name="Update post by Id">
+        <parameter name="postId" value="5"></parameter>
+        <classes>
+            <class name="tests.Positive.PutPostTest"/>
+        </classes>
+    </test>
 </suite>

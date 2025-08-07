@@ -61,5 +61,13 @@ public class UserFacade {
                 .response();
     }
 
+    public Response updatePostById(int postId, PostVORequest body) {
+        return postsAPIImpl.updatePostById(postId, body)
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .extract()
+                .response();
+    }
+
 
 }

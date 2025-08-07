@@ -1,7 +1,7 @@
 package tests.Positive;
 
 import facade.UserFacade;
-import model.Post.PostBuilder;
+import model.Post.PostVOBuilder;
 import model.Post.PostVO;
 import model.Post.PostVORequest;
 import model.Post.PostVORequestFactory;
@@ -20,7 +20,7 @@ public class PostPostTest {
                 .extract()
                 .as(PostVO.class);
 
-        PostVO expectedResponse = new PostBuilder()
+        PostVO expectedResponse = new PostVOBuilder()
                 .withId(actualResponse.getId())
                 .withBody(requestBody.getBody())
                 .withTitle(requestBody.getTitle())

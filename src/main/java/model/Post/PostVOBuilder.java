@@ -1,25 +1,25 @@
 package model.Post;
 
-public class PostBuilder {
+public class PostVOBuilder {
 
     private int userId;
     private int id;
     private String title;
     private String body;
 
-    public PostBuilder withUserId(int userId) {
+    public PostVOBuilder withUserId(int userId) {
         this.userId = userId;
         return this;
     }
-    public PostBuilder withId(int id) {
+    public PostVOBuilder withId(int id) {
         this.id = id;
         return this;
     }
-    public PostBuilder withTitle(String title) {
+    public PostVOBuilder withTitle(String title) {
         this.title = title;
         return this;
     }
-    public PostBuilder withBody(String body) {
+    public PostVOBuilder withBody(String body) {
         this.body = body;
         return this;
     }

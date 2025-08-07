@@ -39,4 +39,13 @@ public class PostsAPIImpl {
                 .post("/posts");
     }
 
+    public Response updatePostById(int postId, PostVORequest body) {
+        return given()
+                .spec(requestSpec())
+                .pathParam("postId", postId)
+                .body(body)
+                .when()
+                .put("/posts/{postId}");
+    }
+
 }
