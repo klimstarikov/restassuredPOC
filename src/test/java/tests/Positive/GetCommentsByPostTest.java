@@ -1,17 +1,24 @@
 package tests.Positive;
 
 import facade.UserFacade;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import model.CommentVO;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import tests.BaseTest;
 
 import java.util.List;
 
-public class GetCommentsByPostTest {
+@Epic("User API Tests")
+@Feature("Get Comments by Post Feature")
+public class GetCommentsByPostTest extends BaseTest {
     private UserFacade userFacade = new UserFacade();
 
     @Test(description = "Get comments by post ID")
     @Parameters({"postId", "expectedNumberOfComments"})
+    @Story("Get Comments by Post Story")
     public void getCommentsByPost(int postId, int expectedNumberOfComments) {
         int actualNumberOfComments;
         List<CommentVO> retrievedComments = userFacade.getCommentsByPostId(postId);
@@ -22,6 +29,7 @@ public class GetCommentsByPostTest {
 
     @Test(description = "Get comments by post ID using path")
     @Parameters({"postId", "expectedNumberOfComments"})
+    @Story("Get Comments by Post Path Story")
     public void getCommentsByPostPath(int postId, int expectedNumberOfComments) {
         int actualNumberOfComments;
         List<CommentVO> retrievedComments = userFacade.getCommentsToPostByPath(postId);

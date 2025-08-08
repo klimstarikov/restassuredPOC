@@ -1,16 +1,23 @@
 package tests.Positive;
 
 import api.PostsAPIImpl;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import model.Post.PostVO;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import tests.BaseTest;
 
 import java.util.List;
 
-public class GetAllTest {
+@Epic("User API Tests")
+@Feature("Get All Posts Feature")
+public class GetAllTest extends BaseTest {
 
     @Test(description = "Get all posts")
     @Parameters ({"userId", "numberOfPosts"})
+    @Story("Get All Posts Story")
     public void getAllPosts(int userId, int numberOfPosts) {
         List<PostVO> postVOS = new PostsAPIImpl().getAllPosts()
                 .then()
