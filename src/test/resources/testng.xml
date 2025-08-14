@@ -30,4 +30,10 @@
             <class name="tests.Positive.PutPostTest"/>
         </classes>
     </test>
+    <test name="Delete post by Id">
+        <parameter name="commentId" value="5"></parameter>
+        <classes>
+            <class name="tests.Positive.DeleteCommentTest"/>
+        </classes>
+    </test>
 </suite>

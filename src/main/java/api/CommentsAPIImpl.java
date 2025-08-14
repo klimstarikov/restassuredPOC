@@ -13,4 +13,12 @@ public class CommentsAPIImpl {
                 .when()
                 .get("/posts/{postId}/comments");
     }
+
+    public Response deleteCommentById(int commentId) {
+        return given()
+                .spec(requestSpec())
+                .pathParam("commentId", commentId)
+                .when()
+                .delete("/comments/{commentId}");
+    }
 }

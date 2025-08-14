@@ -1,6 +1,6 @@
 package tests.Positive;
 
-import facade.UserFacade;
+import facade.APIFacade;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -16,14 +16,14 @@ import tests.BaseTest;
 @Epic("User API Tests")
 @Feature("Update Post Feature")
 public class PutPostTest extends BaseTest {
-    private UserFacade userFacade = new UserFacade();
+    private APIFacade APIFacade = new APIFacade();
 
     @Test(description = "Update post with random fileds and verify response")
     @Parameters({"postId"})
     @Story("Update Post Story")
     public void putRandomPost(int postId) {
         PostVORequest body = PostVORequestFactory.randomPostVORequest();
-        PostVO actualResponse = userFacade.updatePostById(postId, body)
+        PostVO actualResponse = APIFacade.updatePostById(postId, body)
                 .then()
                 .statusCode(200)
                 .extract()

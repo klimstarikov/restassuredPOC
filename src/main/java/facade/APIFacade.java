@@ -5,18 +5,17 @@ import api.PostsAPIImpl;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import model.CommentVO;
-import model.Post.PostVO;
 import model.Post.PostVORequest;
 import model.User.UserTO;
 import org.apache.http.HttpStatus;
 
 import java.util.List;
 
-public class UserFacade {
+public class APIFacade {
     private final PostsAPIImpl postsAPIImpl;
     private final CommentsAPIImpl commentsAPIImpl;
 
-    public UserFacade() {
+    public APIFacade() {
         this.postsAPIImpl = new PostsAPIImpl();
         this.commentsAPIImpl = new CommentsAPIImpl();
     }
@@ -65,6 +64,13 @@ public class UserFacade {
         return postsAPIImpl.updatePostById(postId, body)
                 .then()
                 .statusCode(HttpStatus.SC_OK)
+                .extract()
+                .response();
+    }
+
+    public Response deleteCommentById(int commentId) {
+        return commentsAPIImpl.deleteCommentById(commentId)
+                .then()
                 .extract()
                 .response();
     }

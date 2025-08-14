@@ -1,6 +1,6 @@
 package tests.Positive;
 
-import facade.UserFacade;
+import facade.APIFacade;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -16,7 +16,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 @Feature("Get User by ID Feature")
 public class UserTests extends BaseTest {
     private UserTO expected;
-    UserFacade userFacade = new UserFacade();
+    APIFacade APIFacade = new APIFacade();
 
     @BeforeClass(description = "Prepare test user")
     public void setUp() {
@@ -26,7 +26,7 @@ public class UserTests extends BaseTest {
     @Test
     @Story("Get User by ID Story")
     public void getUserById() {
-        UserTO actual = userFacade.getUserById(expected.getId());
+        UserTO actual = APIFacade.getUserById(expected.getId());
         assert actual.equals(expected) : "Expected user does not match actual user";
     }
 
@@ -34,7 +34,7 @@ public class UserTests extends BaseTest {
     @Test
     @Story("Validate User Schema Story")
     public void validateUserSchema() {
-        userFacade.getUserByIdDefault(expected.getId())
+        APIFacade.getUserByIdDefault(expected.getId())
                 .body(matchesJsonSchemaInClasspath("schema/user-schema.json"));
     }
 }

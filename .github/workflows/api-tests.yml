@@ -1,11 +1,11 @@
 name: Run API Tests
 
+name: Tests with Allure History
+
 on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main ]
-  workflow_dispatch:
 
 jobs:
   test:
@@ -29,5 +29,36 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-m2
 
+      - name: Download Allure history
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          name: allure-history
+          path: allure-history
+          if_no_artifact: ignore
+
       - name: Run tests with Maven
         run: mvn clean test -DsuiteXmlFile=src/test/resources/testng.xml
+
+      - name: Generate Allure HTML
+        run: mvn allure:report
+
+      - name: Copy history to new report
+        run: |
+          mkdir -p target/site/allure-maven-plugin/history
+          cp -r allure-history/* target/site/allure-maven-plugin/history || true
+
+      # Сохраняем новый report как history для следующего рана
+      - name: Save Allure history
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-history
+          path: target/site/allure-maven-plugin/history
+          retention-days: 30
+
+      # Сохраняем полный Allure репорт (HTML) для этого рана
+      - name: Upload Allure report
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report-${{ github.run_number }}
+          path: target/site/allure-maven-plugin
+          retention-days: 30
