@@ -1,7 +1,5 @@
 name: Run API Tests
 
-name: Tests with Allure History
-
 on:
   push:
     branches: [ main ]
