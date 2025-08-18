@@ -1,7 +1,5 @@
 name: Run API Tests
 
-name: Tests with Allure History
-
 on:
   push:
     branches: [ main ]
@@ -47,17 +45,15 @@ jobs:
           mkdir -p target/site/allure-maven-plugin/history
           cp -r allure-history/* target/site/allure-maven-plugin/history || true
 
-      # Сохраняем новый report как history для следующего рана
       - name: Save Allure history
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: allure-history
           path: target/site/allure-maven-plugin/history
           retention-days: 30
 
-      # Сохраняем полный Allure репорт (HTML) для этого рана
       - name: Upload Allure report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: allure-report-${{ github.run_number }}
           path: target/site/allure-maven-plugin
