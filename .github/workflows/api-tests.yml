@@ -32,7 +32,7 @@ jobs:
         with:
           name: allure-history
           path: allure-history
-          if_no_artifact: ignore
+          if_no_artifact_found: ignore
 
       - name: Run tests with Maven
         run: mvn clean test -DsuiteXmlFile=src/test/resources/testng.xml
