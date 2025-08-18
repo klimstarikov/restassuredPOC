@@ -21,4 +21,21 @@ public class CommentsAPIImpl {
                 .when()
                 .delete("/comments/{commentId}");
     }
+
+    public Response getCommentsByPostId(int postId) {
+        return given()
+                .spec(requestSpec())
+                .pathParam("postId", postId)
+                .when()
+                .get("comments?postId={postId}");
+    }
+
+    public Response getCommentsToPostByPathWithExtraQuery(int postId, String id) {
+        return given()
+                .spec(requestSpec())
+                .pathParam("postId", postId)
+                .queryParam("id", id)
+                .when()
+                .get("/posts/{postId}/comments");
+    }
 }

@@ -23,13 +23,6 @@ public class PostsAPIImpl {
                 .get("/posts");
     }
 
-    public Response getCommentsByPostId(int postId) {
-        return given()
-                .spec(requestSpec())
-                .pathParam("postId", postId)
-                .when()
-                .get("comments?postId={postId}");
-    }
 
     public Response postNewPost(PostVORequest body) {
         return given()

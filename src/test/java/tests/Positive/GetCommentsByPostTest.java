@@ -1,6 +1,7 @@
 package tests.Positive;
 
 import facade.APIFacade;
+import facade.CommentsAPIFacade;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -14,14 +15,14 @@ import java.util.List;
 @Epic("User API Tests")
 @Feature("Get Comments by Post Feature")
 public class GetCommentsByPostTest extends BaseTest {
-    private APIFacade APIFacade = new APIFacade();
+    private CommentsAPIFacade commentsAPIFacade = new CommentsAPIFacade();
 
     @Test(description = "Get comments by post ID")
     @Parameters({"postId", "expectedNumberOfComments"})
     @Story("Get Comments by Post Story")
     public void getCommentsByPost(int postId, int expectedNumberOfComments) {
         int actualNumberOfComments;
-        List<CommentVO> retrievedComments = APIFacade.getCommentsByPostId(postId);
+        List<CommentVO> retrievedComments = commentsAPIFacade.getCommentsByPostId(postId);
         assert (retrievedComments != null && !retrievedComments.isEmpty()) : "Retrieved comments should not be null or empty";
         actualNumberOfComments = retrievedComments.stream().filter(i -> i.getPostId() == postId).toList().size();
         assert actualNumberOfComments == expectedNumberOfComments : "Expected number of comments does not match actual number of comments for post ID " + postId;
@@ -32,7 +33,7 @@ public class GetCommentsByPostTest extends BaseTest {
     @Story("Get Comments by Post Path Story")
     public void getCommentsByPostPath(int postId, int expectedNumberOfComments) {
         int actualNumberOfComments;
-        List<CommentVO> retrievedComments = APIFacade.getCommentsToPostByPath(postId);
+        List<CommentVO> retrievedComments = commentsAPIFacade.getCommentsListToPostByPath(postId);
         assert (retrievedComments != null && !retrievedComments.isEmpty()) : "Retrieved comments should not be null or empty";
         actualNumberOfComments = retrievedComments.stream().filter(i -> i.getPostId() == postId).toList().size();
         assert actualNumberOfComments == expectedNumberOfComments : "Expected number of comments does not match actual number of comments for path ID " + postId;

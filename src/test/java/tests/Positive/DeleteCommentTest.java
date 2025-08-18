@@ -1,6 +1,7 @@
 package tests.Positive;
 
 import facade.APIFacade;
+import facade.CommentsAPIFacade;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
@@ -17,14 +18,14 @@ import static org.hamcrest.Matchers.isOneOf;
 @Epic("Comment API Tests")
 @Feature("Delete Comment Feature")
 public class DeleteCommentTest extends BaseTest {
-    APIFacade APIFacade = new APIFacade();
+    CommentsAPIFacade commentsAPIFacade = new CommentsAPIFacade();
 
 
     @Test(description = "Delete comment by ID and verify response")
     @Story("Delete Comment Story")
     @Parameters({"commentId"})
     public void deleteCommentTest(int commentId) {
-        APIFacade.deleteCommentById(commentId)
+        commentsAPIFacade.deleteCommentById(commentId)
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .body(equalTo("{}"));

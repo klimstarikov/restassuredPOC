@@ -4,7 +4,6 @@ import api.CommentsAPIImpl;
 import api.PostsAPIImpl;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
-import model.CommentVO;
 import model.Post.PostVORequest;
 import model.User.UserTO;
 import org.apache.http.HttpStatus;
@@ -34,24 +33,6 @@ public class APIFacade {
                 .statusCode(HttpStatus.SC_OK);
     }
 
-    public List<CommentVO> getCommentsByPostId(int postId) {
-        return postsAPIImpl.getCommentsByPostId(postId)
-                .then()
-                .statusCode(HttpStatus.SC_OK)
-                .extract()
-                .jsonPath()
-                .getList("", CommentVO.class);
-    }
-
-    public List<CommentVO> getCommentsToPostByPath(int postId) {
-        return commentsAPIImpl.getCommentsToPostByPath(postId)
-                .then()
-                .statusCode(HttpStatus.SC_OK)
-                .extract()
-                .jsonPath()
-                .getList("", CommentVO.class);
-    }
-
     public Response postNewPost(PostVORequest body) {
         return postsAPIImpl.postNewPost(body)
                 .then()
@@ -64,13 +45,6 @@ public class APIFacade {
         return postsAPIImpl.updatePostById(postId, body)
                 .then()
                 .statusCode(HttpStatus.SC_OK)
-                .extract()
-                .response();
-    }
-
-    public Response deleteCommentById(int commentId) {
-        return commentsAPIImpl.deleteCommentById(commentId)
-                .then()
                 .extract()
                 .response();
     }
