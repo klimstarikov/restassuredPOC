@@ -16,7 +16,7 @@ import java.util.List;
 public class GetAllTest extends BaseTest {
 
     @Test(description = "Get all posts")
-    @Parameters ({"userId", "numberOfPosts"})
+    @Parameters({"userId", "numberOfPosts"})
     @Story("Get All Posts Story")
     public void getAllPosts(int userId, int numberOfPosts) {
         List<PostVO> postVOS = new PostsAPIImpl().getAllPosts()
@@ -27,7 +27,7 @@ public class GetAllTest extends BaseTest {
                 .getList("", PostVO.class);
 
         List<PostVO> expectedPosts = postVOS.stream()
-                .filter(p-> p.getUserId() == userId)
+                .filter(p -> p.getUserId() == userId)
                 .toList();
         assert expectedPosts.size() == numberOfPosts : "Expected number of posts does not match actual number of posts";
     }

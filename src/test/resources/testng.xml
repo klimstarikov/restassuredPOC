@@ -1,37 +1,43 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="User Test Suite" parallel="methods" thread-count="4">
+    <parameter name="userId" value="2"/>
+    <parameter name="numberOfPosts" value="10"/>
+    <parameter name="postId" value="1"/>
+    <parameter name="expectedNumberOfComments" value="5"/>
+    <parameter name="commentId" value="5"/>
+
     <test name="Parallel User Test">
         <classes>
             <class name="tests.Positive.UserTests"/>
         </classes>
     </test>
+
     <test name="GetAll Posts">
-        <parameter name="userId" value="2"/>
-        <parameter name="numberOfPosts" value="10"/>
         <classes>
             <class name="tests.Positive.GetAllTest"/>
         </classes>
     </test>
+
     <test name="Get Comments by Id">
-        <parameter name="postId" value="1"></parameter>
-        <parameter name="expectedNumberOfComments" value="5"></parameter>
         <classes>
             <class name="tests.Positive.GetCommentsByPostTest"/>
         </classes>
     </test>
+
     <test name="Post posts by User">
         <classes>
             <class name="tests.Positive.PostPostTest"/>
         </classes>
     </test>
+
     <test name="Update post by Id">
-        <parameter name="postId" value="5"></parameter>
         <classes>
             <class name="tests.Positive.PutPostTest"/>
+
         </classes>
     </test>
+
     <test name="Delete post by Id">
-        <parameter name="commentId" value="5"></parameter>
         <classes>
             <class name="tests.Positive.DeleteCommentTest"/>
         </classes>
