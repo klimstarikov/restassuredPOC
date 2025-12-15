@@ -79,4 +79,10 @@
         </classes>
     </test>
 
+    <test name="Comments GET negative test">
+        <classes>
+            <class name="tests.Negative.CommentsGetNegativeTest"/>
+        </classes>
+    </test>
+
 </suite>
