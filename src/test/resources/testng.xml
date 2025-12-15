@@ -42,4 +42,41 @@
             <class name="tests.Positive.DeleteCommentTest"/>
         </classes>
     </test>
+
+    <test name="Todos GET test">
+        <classes>
+            <class name="tests.Positive.TodosTest"/>
+        </classes>
+    </test>
+
+    <test name="Albums GET test">
+        <classes>
+            <class name="tests.Positive.AlbumsTest"/>
+        </classes>
+    </test>
+
+    <test name="Photos GET test">
+        <classes>
+            <class name="tests.Positive.PhotosTest"/>
+        </classes>
+    </test>
+
+    <test name="Todos PUT DELETE test">
+        <classes>
+            <class name="tests.Positive.TodosPutDeleteTest"/>
+        </classes>
+    </test>
+
+    <test name="Albums PUT DELETE test">
+        <classes>
+            <class name="tests.Positive.AlbumsPutDeleteTest"/>
+        </classes>
+    </test>
+
+    <test name="Photos PUT DELETE test">
+        <classes>
+            <class name="tests.Positive.PhotosPutDeleteTest"/>
+        </classes>
+    </test>
+
 </suite>
